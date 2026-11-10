@@ -1,29 +1,55 @@
 # KC Sign
 
-KC Sign is an early, mobile-friendly web prototype for exploring English speech/text input with Nigerian Sign Language (NSL) sign clips.
+KC Sign is a static prototype for a Nigerian Sign Language (NSL) communication app that matches spoken or typed English to a limited sign phrase library.
 
-> **Important:** This prototype is not a validated English-to-NSL translator. Sign languages have their own grammar and regional variation. Only present translations and clips as NSL content after review by fluent NSL signers and Deaf community collaborators.
+> Important: This project is not a general-purpose English-to-NSL translator. It is a phrase-based app that relies on reviewed NSL recordings. Before making it public, every sign or phrase must be reviewed by fluent NSL signers and Deaf community collaborators.
 
 ## Run locally
 
-The app is a static website. Because it loads the clip library with `fetch()`, serve the files over HTTP rather than opening `index.html` directly.
-
-For example, with Python installed:
+Because the app loads JSON and video files with HTTP fetch requests, it should be served over a local web server.
 
 ```bash
 python -m http.server 8000
 ```
 
-Then open <http://localhost:8000>.
+Then open:
 
-## Browse phrase ideas
+```text
+http://localhost:8000
+```
 
-Open `phrasebook.html` to search the starter phrase catalog by English wording or category. The page labels every item as needing NSL review; the phrases are discussion prompts, not translations, and the page does not present them as signed content.
+## Project structure
 
-## Add sign clips
+- `index.html` — main app and speech/text translation prototype
+- `phrasebook.html` — searchable phrase planning page
+- `clips/approved-library.json` — starter approved phrase library (placeholder entries)
+- `clips/phrase-catalog.json` — unreviewed phrase ideas for discussion
+- `clips/clips.json` — runtime phrase-to-video mapping for actual sign videos
+- `clips/` — approved sign video files
 
-1. Put each video file in the lowercase `clips/` directory.
-2. Add a mapping from the phrase to the video filename in `clips/clips.json`:
+## Starter approved phrase library
+
+`clips/approved-library.json` contains a small starter list of everyday phrases. The entries are placeholders for approved content, not live sign videos. Each item should be replaced with an actual reviewed sign clip and reviewer metadata before deployment.
+
+## Phrase review workflow
+
+1. Collect candidate phrases from real communication situations.
+2. Review them with NSL experts and Deaf community members.
+3. Record approved sign videos with consent.
+4. Add video filenames to `clips/clips.json`.
+5. Validate meaning, clarity, and regional appropriateness.
+6. Only then promote a phrase to active use in the app.
+
+## Important design notes
+
+- Keep approved and unapproved phrases separate.
+- Never display unreviewed phrase ideas as verified sign translations.
+- Show a clear “not in approved library” message when unsupported content is spoken.
+- Keep text input and playback controls available as fallback options.
+
+## File naming guidance
+
+Use lowercase file names in `clips/` and reference them consistently from `clips/clips.json`:
 
 ```json
 {
@@ -31,32 +57,4 @@ Open `phrasebook.html` to search the starter phrase catalog by English wording o
 }
 ```
 
-For this example, the video should be at `clips/thank_you.mp4`. Use JSON strings for both keys and filenames. The web app expects this lowercase path, which also works on case-sensitive hosting.
-
-The in-app “Attach a clip” control is temporary: it only keeps the selected video in the current browser session. Add approved clips to the repository to make them available persistently.
-
-## Starter phrase catalog
-
-`clips/phrase-catalog.json` is a planning list of everyday phrases for the first release. Its entries are intentionally marked `needs_nsl_review` and contain no invented sign translations or video paths. Work with fluent NSL signers and Deaf community reviewers to confirm the intended meaning, regional variants, recording, and approval before adding any entry to the runtime library in `clips/clips.json`.
-
-The catalog is not loaded by the translator; the runtime library is separate. This keeps unreviewed phrase ideas from being presented as approved NSL content.
-
-## Speech input
-
-The app uses the browser's Web Speech API when available and requests the `en-NG` recognition language. Support and recognition quality vary by browser, device, and speaker. Users can type instead when voice input is unavailable or inaccurate.
-
-## Content and accessibility
-
-- Collaborate with fluent NSL signers and Deaf community reviewers on phrase selection, recordings, meanings, and regional variants.
-- Obtain informed consent and agree how recordings may be stored and shared.
-- Clearly label unreviewed or missing content; do not imply that fingerspelling or word-by-word playback is a full sentence translation.
-- Keep text input and visible playback controls available as alternatives to speech input.
-
-## Project files
-
-- `index.html` — app interface and prototype logic
-- `phrasebook.html` — searchable phrase planning catalog
-- `manifest.json` and `sw.js` — installability and service-worker support
-- `clips/clips.json` — runtime phrase-to-video mapping
-- `clips/phrase-catalog.json` — unreviewed phrase planning catalog
-- `clips/` — approved sign video files
+This helps keep paths reliable on case-sensitive systems.

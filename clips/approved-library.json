@@ -1,0 +1,144 @@
+{
+  "approved_phrases": [
+    {
+      "id": "hello",
+      "english": "Hello",
+      "category": "greetings",
+      "status": "approved",
+      "video": null,
+      "reviewed_by": null,
+      "notes": "Placeholder only. Replace with an approved NSL video after review."
+    },
+    {
+      "id": "good_morning",
+      "english": "Good morning",
+      "category": "greetings",
+      "status": "approved",
+      "video": null,
+      "reviewed_by": null,
+      "notes": "Placeholder only. Replace with an approved NSL video after review."
+    },
+    {
+      "id": "how_are_you",
+      "english": "How are you?",
+      "category": "greetings",
+      "status": "approved",
+      "video": null,
+      "reviewed_by": null,
+      "notes": "Placeholder only. Replace with an approved NSL video after review."
+    },
+    {
+      "id": "i_am_fine",
+      "english": "I am fine",
+      "category": "greetings",
+      "status": "approved",
+      "video": null,
+      "reviewed_by": null,
+      "notes": "Placeholder only. Replace with an approved NSL video after review."
+    },
+    {
+      "id": "please",
+      "english": "Please",
+      "category": "polite",
+      "status": "approved",
+      "video": null,
+      "reviewed_by": null,
+      "notes": "Placeholder only. Replace with an approved NSL video after review."
+    },
+    {
+      "id": "thank_you",
+      "english": "Thank you",
+      "category": "polite",
+      "status": "approved",
+      "video": null,
+      "reviewed_by": null,
+      "notes": "Placeholder only. Replace with an approved NSL video after review."
+    },
+    {
+      "id": "i_need_help",
+      "english": "I need help",
+      "category": "help",
+      "status": "approved",
+      "video": null,
+      "reviewed_by": null,
+      "notes": "Placeholder only. Replace with an approved NSL video after review."
+    },
+    {
+      "id": "can_you_help_me",
+      "english": "Can you help me?",
+      "category": "help",
+      "status": "approved",
+      "video": null,
+      "reviewed_by": null,
+      "notes": "Placeholder only. Replace with an approved NSL video after review."
+    },
+    {
+      "id": "i_need_water",
+      "english": "I need water",
+      "category": "daily_needs",
+      "status": "approved",
+      "video": null,
+      "reviewed_by": null,
+      "notes": "Placeholder only. Replace with an approved NSL video after review."
+    },
+    {
+      "id": "i_need_food",
+      "english": "I need food",
+      "category": "daily_needs",
+      "status": "approved",
+      "video": null,
+      "reviewed_by": null,
+      "notes": "Placeholder only. Replace with an approved NSL video after review."
+    },
+    {
+      "id": "where_is_the_restroom",
+      "english": "Where is the restroom?",
+      "category": "daily_needs",
+      "status": "approved",
+      "video": null,
+      "reviewed_by": null,
+      "notes": "Placeholder only. Replace with an approved NSL video after review."
+    },
+    {
+      "id": "i_need_a_doctor",
+      "english": "I need a doctor",
+      "category": "health",
+      "status": "approved",
+      "video": null,
+      "reviewed_by": null,
+      "notes": "Placeholder only. Replace with an approved NSL video after review."
+    },
+    {
+      "id": "i_am_in_pain",
+      "english": "I am in pain",
+      "category": "health",
+      "status": "approved",
+      "video": null,
+      "reviewed_by": null,
+      "notes": "Placeholder only. Replace with an approved NSL video after review."
+    },
+    {
+      "id": "i_do_not_understand",
+      "english": "I do not understand",
+      "category": "conversation",
+      "status": "approved",
+      "video": null,
+      "reviewed_by": null,
+      "notes": "Placeholder only. Replace with an approved NSL video after review."
+    },
+    {
+      "id": "please_repeat_that",
+      "english": "Please repeat that",
+      "category": "conversation",
+      "status": "approved",
+      "video": null,
+      "reviewed_by": null,
+      "notes": "Placeholder only. Replace with an approved NSL video after review."
+    }
+  ],
+  "meta": {
+    "language": "Nigerian Sign Language",
+    "status": "placeholder_library",
+    "warning": "This is a starter catalog. Replace placeholder videos and reviewer data before production use."
+  }
+}
