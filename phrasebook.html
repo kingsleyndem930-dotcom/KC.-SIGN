@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0F6B4F">
+  <title>Phrase ideas — KC Sign</title>
+  <style>
+    :root{color-scheme:light dark;--bg:#f2f6f3;--ink:#12231e;--muted:#586b64;--card:#fff;--line:#c5d3cc;--accent:#0f6b4f;--warning:#805600;--warning-bg:#fff2c9}
+    @media(prefers-color-scheme:dark){:root{--bg:#101b17;--ink:#e5f0eb;--muted:#a3b5ad;--card:#18282f;--line:#2e4540;--accent:#4cc79a;--warning:#ffe09a;--warning-bg:#40351b}}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+    main{max-width:760px;margin:auto;padding:24px 16px 48px}h1{line-height:1.2;margin:.5rem 0}h2{font-size:1rem;margin:0 0 .4rem}p{margin:.5rem 0}.muted{color:var(--muted)}
+    a{color:var(--accent)}.notice{border-left:4px solid var(--warning);background:var(--warning-bg);padding:12px 14px;border-radius:8px;margin:18px 0}
+    .controls{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.controls input,.controls select{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px;min-height:44px}.controls input{flex:1;min-width:220px}
+    #phrases{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.phrase{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}.badge{display:inline-block;margin-top:8px;border:1px solid var(--line);border-radius:999px;padding:3px 9px;font-size:.82rem;color:var(--muted)}
+    #status{min-height:1.5em;color:var(--muted)}:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  </style>
+</head>
+<body>
+  <main>
+    <a href="index.html">← Back to KC Sign</a>
+    <h1>Phrase ideas for community review</h1>
+    <p class="muted">A planning list to help decide what the first phrase set should cover.</p>
+    <aside class="notice"><strong>Not NSL translations:</strong> These English phrases have not been verified or translated. They are ideas for discussion with fluent Nigerian Sign Language signers and Deaf community reviewers. No sign video is provided until content has been reviewed and recorded with consent.</aside>
+    <div class="controls">
+      <label>
+        <span class="muted">Search phrases</span><br>
+        <input id="search" type="search" placeholder="Search English phrases" autocomplete="off">
+      </label>
+      <label>
+        <span class="muted">Category</span><br>
+        <select id="category"><option value="">All categories</option></select>
+      </label>
+    </div>
+    <p id="status" role="status" aria-live="polite">Loading phrase ideas…</p>
+    <section id="phrases" aria-label="Phrase ideas"></section>
+  </main>
+  <script>
+    const phraseContainer = document.getElementById('phrases');
+    const searchInput = document.getElementById('search');
+    const categorySelect = document.getElementById('category');
+    const status = document.getElementById('status');
+    let phrases = [];
+
+    function render() {
+      const query = searchInput.value.trim().toLowerCase();
+      const category = categorySelect.value;
+      const matches = phrases.filter((phrase) =>
+        phrase.english.toLowerCase().includes(query) && (!category || phrase.category === category)
+      );
+      phraseContainer.replaceChildren();
+      matches.forEach((phrase) => {
+        const card = document.createElement('article');
+        card.className = 'phrase';
+        const title = document.createElement('h2');
+        title.textContent = phrase.english;
+        const group = document.createElement('p');
+        group.className = 'muted';
+        group.textContent = phrase.category;
+        const badge = document.createElement('span');
+        badge.className = 'badge';
+        badge.textContent = 'Needs NSL review';
+        card.append(title, group, badge);
+        phraseContainer.append(card);
+      });
+      status.textContent = matches.length ? `${matches.length} phrase idea${matches.length === 1 ? '' : 's'} shown. These are not verified translations.` : 'No phrase ideas match your search.';
+    }
+
+    fetch('clips/phrase-catalog.json')
+      .then((response) => {
+        if (!response.ok) throw new Error('Phrase catalog could not be loaded.');
+        return response.json();
+      })
+      .then((catalog) => {
+        phrases = catalog.phrases || [];
+        [...new Set(phrases.map((phrase) => phrase.category))].sort().forEach((name) => {
+          const option = document.createElement('option');
+          option.value = name;
+          option.textContent = name;
+          categorySelect.append(option);
+        });
+        render();
+      })
+      .catch(() => {
+        status.textContent = 'Could not load phrase ideas. Please try again when the app is served over HTTP.';
+      });
+
+    searchInput.addEventListener('input', render);
+    categorySelect.addEventListener('change', render);
+  </script>
+</body>
+</html>

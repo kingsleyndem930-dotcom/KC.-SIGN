@@ -16,6 +16,10 @@ python -m http.server 8000
 
 Then open <http://localhost:8000>.
 
+## Browse phrase ideas
+
+Open `phrasebook.html` to search the starter phrase catalog by English wording or category. The page labels every item as needing NSL review; the phrases are discussion prompts, not translations, and the page does not present them as signed content.
+
 ## Add sign clips
 
 1. Put each video file in the lowercase `clips/` directory.
@@ -35,7 +39,7 @@ The in-app “Attach a clip” control is temporary: it only keeps the selected 
 
 `clips/phrase-catalog.json` is a planning list of everyday phrases for the first release. Its entries are intentionally marked `needs_nsl_review` and contain no invented sign translations or video paths. Work with fluent NSL signers and Deaf community reviewers to confirm the intended meaning, regional variants, recording, and approval before adding any entry to the runtime library in `clips/clips.json`.
 
-The catalog is not currently loaded by the app; the runtime library is separate. This keeps unreviewed phrase ideas from being presented as approved NSL content.
+The catalog is not loaded by the translator; the runtime library is separate. This keeps unreviewed phrase ideas from being presented as approved NSL content.
 
 ## Speech input
 
@@ -51,6 +55,7 @@ The app uses the browser's Web Speech API when available and requests the `en-NG
 ## Project files
 
 - `index.html` — app interface and prototype logic
+- `phrasebook.html` — searchable phrase planning catalog
 - `manifest.json` and `sw.js` — installability and service-worker support
 - `clips/clips.json` — runtime phrase-to-video mapping
 - `clips/phrase-catalog.json` — unreviewed phrase planning catalog
