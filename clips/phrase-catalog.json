@@ -1,0 +1,146 @@
+{
+  "language": "Nigerian Sign Language",
+  "purpose": "Starter phrase ideas for community review. This is a planning catalog, not a translation dataset.",
+  "phrases": [
+    {
+      "id": "greeting-hello",
+      "category": "greetings",
+      "english": "Hello",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    },
+    {
+      "id": "greeting-good-morning",
+      "category": "greetings",
+      "english": "Good morning",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    },
+    {
+      "id": "greeting-how-are-you",
+      "category": "greetings",
+      "english": "How are you?",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    },
+    {
+      "id": "greeting-im-fine",
+      "category": "greetings",
+      "english": "I am fine",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    },
+    {
+      "id": "polite-please",
+      "category": "polite expressions",
+      "english": "Please",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    },
+    {
+      "id": "polite-thank-you",
+      "category": "polite expressions",
+      "english": "Thank you",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    },
+    {
+      "id": "polite-sorry",
+      "category": "polite expressions",
+      "english": "I am sorry",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    },
+    {
+      "id": "help-need-help",
+      "category": "getting help",
+      "english": "I need help",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    },
+    {
+      "id": "help-can-you-help",
+      "category": "getting help",
+      "english": "Can you help me?",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    },
+    {
+      "id": "help-call-emergency-services",
+      "category": "getting help",
+      "english": "Please call for help",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    },
+    {
+      "id": "needs-water",
+      "category": "daily needs",
+      "english": "I need water",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    },
+    {
+      "id": "needs-food",
+      "category": "daily needs",
+      "english": "I need food",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    },
+    {
+      "id": "needs-restroom",
+      "category": "daily needs",
+      "english": "Where is the restroom?",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    },
+    {
+      "id": "health-need-doctor",
+      "category": "health",
+      "english": "I need a doctor",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    },
+    {
+      "id": "health-pain",
+      "category": "health",
+      "english": "I am in pain",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    },
+    {
+      "id": "health-emergency",
+      "category": "health",
+      "english": "This is an emergency",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    },
+    {
+      "id": "conversation-dont-understand",
+      "category": "conversation",
+      "english": "I do not understand",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    },
+    {
+      "id": "conversation-repeat",
+      "category": "conversation",
+      "english": "Please repeat that",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    },
+    {
+      "id": "conversation-write-it-down",
+      "category": "conversation",
+      "english": "Please write it down",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    },
+    {
+      "id": "conversation-yes-no",
+      "category": "conversation",
+      "english": "Yes or no?",
+      "review_status": "needs_nsl_review",
+      "sign_video": null
+    }
+  ]
+}

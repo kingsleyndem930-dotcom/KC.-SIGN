@@ -31,6 +31,12 @@ For this example, the video should be at `clips/thank_you.mp4`. Use JSON strings
 
 The in-app “Attach a clip” control is temporary: it only keeps the selected video in the current browser session. Add approved clips to the repository to make them available persistently.
 
+## Starter phrase catalog
+
+`clips/phrase-catalog.json` is a planning list of everyday phrases for the first release. Its entries are intentionally marked `needs_nsl_review` and contain no invented sign translations or video paths. Work with fluent NSL signers and Deaf community reviewers to confirm the intended meaning, regional variants, recording, and approval before adding any entry to the runtime library in `clips/clips.json`.
+
+The catalog is not currently loaded by the app; the runtime library is separate. This keeps unreviewed phrase ideas from being presented as approved NSL content.
+
 ## Speech input
 
 The app uses the browser's Web Speech API when available and requests the `en-NG` recognition language. Support and recognition quality vary by browser, device, and speaker. Users can type instead when voice input is unavailable or inaccurate.
@@ -46,5 +52,6 @@ The app uses the browser's Web Speech API when available and requests the `en-NG
 
 - `index.html` — app interface and prototype logic
 - `manifest.json` and `sw.js` — installability and service-worker support
-- `clips/clips.json` — phrase-to-video mapping
+- `clips/clips.json` — runtime phrase-to-video mapping
+- `clips/phrase-catalog.json` — unreviewed phrase planning catalog
 - `clips/` — approved sign video files
