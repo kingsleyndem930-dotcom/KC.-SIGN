@@ -9,41 +9,18 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>KC Sign</title>
 <style>
-:root{--bg:#F2F6F3;--ink:#12231E;--mute:#586B64;--card:#FFFFFF;--line:#C5D3CC;--acc:#0F6B4F;--accfg:#FFFFFF;--hi:#D8F0E5;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#F2F6F3;--ink:#12231E;--mute:#586B64;--card:#FFFFFF;--line:#C5D3CC;--acc:#0F6B4F;--accfg:#FFFFFF;--hi:#D8F0E5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101B17;--ink:#E5F0EB;--mute:#93A8A0;--card:#18282F;--line:#2E4540;--acc:#4CC79A;--accfg:#08231A;--hi:#1F4036}}
 :root[data-theme="dark"]{--bg:#101B17;--ink:#E5F0EB;--mute:#93A8A0;--card:#18282F;--line:#2E4540;--acc:#4CC79A;--accfg:#08231A;--hi:#1F4036}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
-main{max-width:520px;margin:0 auto;padding:24px 16px 40px}
-h1{font-size:1.5rem;margin:0 0 4px;line-height:1.2}
-h2{font-size:1rem;margin:24px 0 8px}
-.sub{margin:0 0 16px;color:var(--mute)}
-.card{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:14px}
-textarea,input[type=text]{font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:10px;width:100%}
-textarea{min-height:76px;resize:vertical}
-.btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-button{font:inherit;font-weight:600;border-radius:999px;padding:10px 16px;cursor:pointer;border:1.5px solid var(--acc);background:none;color:var(--acc)}
-button.p{background:var(--acc);color:var(--accfg)}
-:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
-#stage{margin-top:16px;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px}
-#stage video{width:100%;max-height:260px;border-radius:10px;background:#000}
-.big{font-size:2.4rem;font-weight:700;line-height:1.1;overflow-wrap:anywhere}
-.note{color:var(--mute);font-size:.9rem}
-#seq{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.chip{padding:4px 10px;border:1.5px solid var(--line);border-radius:8px;font-size:.9rem}
-.chip.on{background:var(--hi);border-color:var(--acc)}
-.chip.s{border-style:dashed}
-#msg{margin-top:8px;color:var(--mute);font-size:.9rem;min-height:1.3em}
-ul{list-style:none;margin:0;padding:0}
-li{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid var(--line)}
-li span:last-child{color:var(--mute)}
-.add{display:flex;flex-direction:column;gap:8px}
-.logo{width:96px;height:96px;border-radius:24px;background:var(--acc);color:var(--accfg);font:800 2.4rem/96px system-ui,sans-serif;text-align:center;margin:32px auto 16px}
-.hh{text-align:center;font-size:2.2rem}.hs{text-align:center;max-width:320px;margin:8px auto 24px}
-.btns.col{flex-direction:column;max-width:320px;margin:0 auto 16px}
-#back{margin-top:8px}
+main{max-width:560px;margin:0 auto;padding:24px 16px 40px}h1{font-size:1.5rem;margin:0 0 4px;line-height:1.2}h2{font-size:1rem;margin:24px 0 8px}
+.sub{margin:0 0 16px;color:var(--mute)}.card{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:14px}
+textarea,select{font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:10px;width:100%}textarea{min-height:84px;resize:vertical}
+.btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}button{font:inherit;font-weight:600;border-radius:999px;padding:10px 16px;cursor:pointer;border:1.5px solid var(--acc);background:none;color:var(--acc)}button.p{background:var(--acc);color:var(--accfg)}button:disabled{opacity:.55;cursor:not-allowed}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}.note{color:var(--mute);font-size:.9rem}.warning{border-left:4px solid #b77900;padding:10px 12px;margin:12px 0;background:var(--hi);border-radius:8px}
+#stage{margin-top:16px;min-height:170px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px}#stage video{width:100%;max-height:300px;border-radius:10px;background:#000}.big{font-size:2rem;font-weight:700;line-height:1.15;overflow-wrap:anywhere}
+#msg{margin-top:8px;color:var(--mute);font-size:.9rem;min-height:1.3em}ul{list-style:none;margin:0;padding:0}li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid var(--line)}li span:last-child{color:var(--mute);font-size:.88rem}.logo{width:76px;height:76px;border-radius:22px;background:var(--acc);color:var(--accfg);font:800 2rem/76px system-ui,sans-serif;text-align:center;margin:20px auto 16px}.hh{text-align:center;font-size:2.2rem}.hs{text-align:center;max-width:360px;margin:8px auto 24px}.btns.col{flex-direction:column;max-width:320px;margin:0 auto 16px}#back{margin-top:8px}.phrase-button{border:0;border-radius:0;border-bottom:1px solid var(--line);width:100%;text-align:left;padding:10px 0;color:var(--ink)}.phrase-button:hover{background:var(--hi)}
 </style>
 </head>
 <body>
@@ -51,169 +28,99 @@ li span:last-child{color:var(--mute)}
 <section id="home">
 <div class="logo" aria-hidden="true">KC</div>
 <h1 class="hh">KC Sign</h1>
-<p class="sub hs">Speak or type English and play a reviewed Nigerian Sign Language phrase.</p>
-<div class="btns col">
-<button class="p" id="start" type="button">Start translating</button>
-<button id="about" type="button">How it works</button>
-</div>
+<p class="sub hs">Speak or type English. KC Sign transcribes speech and checks for a reviewed NSL phrase.</p>
+<div class="btns col"><button class="p" id="start" type="button">Start</button><button id="about" type="button">How it works</button></div>
 <div class="card" id="aboutbox" hidden>
-<p>1. Tap Speak or type a short phrase.</p>
-<p>2. KC Sign checks the approved NSL phrase library.</p>
-<p>3. If the phrase is approved, the matching sign clip plays. Otherwise, the app shows that the phrase is not yet available.</p>
-<p class="note">This is an early version. Sign meanings must be reviewed by fluent NSL signers before they are treated as valid translations.</p>
+<p>1. Tap Speak and say a short English phrase, or type it.</p><p>2. Review the recognized transcript and choose “Check phrase.”</p><p>3. A sign video plays only when an approved clip is available.</p>
+<p class="note">Speech recognition turns speech into English text; it does not itself translate English into NSL. Browser and language support vary. NSL phrases must be reviewed by fluent signers.</p>
 </div>
 </section>
 <div id="app" hidden>
 <button id="back" type="button">← Home</button>
-<h1 style="margin-top:12px">Translate</h1>
-<p class="sub">Try one of the approved phrases.</p>
+<h1 style="margin-top:12px">Speak or type</h1>
+<p class="sub">Speech recognition uses your browser. Check the transcript before relying on it.</p>
 <div class="card">
-<label for="txt" class="note">What was said</label>
-<textarea id="txt" placeholder="Try: hello, please, i need help, where is the restroom?"></textarea>
-<div class="btns">
-<button class="p" id="go" type="button">Show signs</button>
-<button id="mic" type="button">Speak</button>
+<label for="language" class="note">Speech recognition language</label>
+<select id="language" aria-label="Speech recognition language"><option value="en-NG">English (Nigeria)</option><option value="en-GB">English (UK)</option><option value="en-US">English (US)</option></select>
+<div class="btns"><button class="p" id="mic" type="button">🎙 Speak</button><button id="go" type="button">Check phrase</button></div>
+<p class="note" id="interim" aria-live="polite"></p>
+<label for="txt" class="note">Recognized or typed English</label>
+<textarea id="txt" autocomplete="off" placeholder="For example: Hello"></textarea>
+<div id="msg" role="status" aria-live="polite"></div>
 </div>
-<div id="msg" role="status"></div>
-</div>
-
-<div class="card" id="stage" aria-live="polite"><span class="note">Approved signs will appear here.</span></div>
-<div id="seq"></div>
-
-<h2>Approved phrase library</h2>
-<div class="card">
-<ul id="lib"></ul>
-</div>
+<div class="warning"><strong>Phrase lookup, not general translation.</strong> Only exact phrases with an approved NSL clip can be shown. Unsupported wording is not converted word by word.</div>
+<div class="card" id="stage" aria-live="polite"><span class="note">Your result will appear here.</span></div>
+<h2>Available reviewed phrases</h2>
+<div class="card"><ul id="lib"></ul><p class="note" id="empty-library" hidden>No reviewed phrases with sign videos are available yet. Phrase ideas still need NSL community review and recordings.</p></div>
 </div>
 </main>
 <script>
-var LIB={},APPROVED=[],FILLER={um:1,uh:1,erm:1,uhh:1},run=0,timer=null;
-var $=function(i){return document.getElementById(i)};
-
-function normalize(text){
-  return text.toLowerCase().replace(/[^a-z0-9' ]+/g,' ').trim().replace(/\s+/g,' ');
+var LIB={},APPROVED=[],recognition=null,listening=false;
+var $=function(id){return document.getElementById(id)};
+function normalize(text){return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9' ]+/g,' ').trim().replace(/\s+/g,' ')}
+function stage(el){var s=$('stage');s.replaceChildren(el)}
+function resultCard(title,note){var d=document.createElement('div'),b=document.createElement('div'),p=document.createElement('p');b.className='big';b.textContent=title;p.className='note';p.textContent=note;d.append(b,p);return d}
+function checkPhrase(text){
+  var key=normalize(text);
+  if(!key){stage(resultCard('Say or type a phrase','There is no text to check yet.'));return}
+  var entry=LIB[key];
+  if(!entry){stage(resultCard('No reviewed match yet','We recognized “'+text.trim()+'”, but it does not exactly match a phrase with an approved NSL video. Edit the text or browse available phrases.'));return}
+  var video=document.createElement('video');video.controls=true;video.playsInline=true;video.preload='metadata';video.src=entry.video;
+  video.setAttribute('aria-label','Reviewed sign video for '+entry.english);
+  video.onerror=function(){stage(resultCard(entry.english,'The sign video could not be loaded. Please try again later.'))};
+  stage(video);
+  video.play().catch(function(){/* Playback controls remain available if autoplay is blocked. */});
 }
-
-function tokenize(text){
-  var raw=normalize(text);
-  if(!raw){return []}
-  var words=raw.split(' ').filter(function(x){return x&&!FILLER[x]});
-  var out=[],i=0;
-  while(i<words.length){
-    var hit=null;
-    for(var n=Math.min(4,words.length-i);n>0;n--){
-      var phrase=words.slice(i,i+n).join(' ');
-      if(LIB[phrase]){hit={label:phrase,url:LIB[phrase].video||null,n:n,approved:true};break}
-    }
-    if(hit){
-      out.push({label:hit.label,url:hit.url,kind:'sign'});
-      i+=hit.n;
-    }else{
-      out.push({label:words[i],kind:'unsupported'});
-      i++;
-    }
-  }
-  return out;
-}
-
-function renderSeq(items,cur){
-  var s=$('seq');s.textContent='';
-  items.forEach(function(t,k){
-    var c=document.createElement('span');
-    c.className='chip'+(t.kind==='unsupported'?' s':'')+(k===cur?' on':'');
-    c.textContent=t.label;
-    s.appendChild(c);
-  });
-}
-
-function stage(el){var s=$('stage');s.textContent='';s.appendChild(el)}
-function card(big,note){
-  var d=document.createElement('div');
-  var b=document.createElement('div');b.className='big';b.textContent=big;
-  var n=document.createElement('div');n.className='note';n.textContent=note;
-  d.appendChild(b);d.appendChild(n);return d;
-}
-
-function play(items){
-  run++;var id=run;clearTimeout(timer);
-  if(!items.length){stage(card('…','Nothing to show yet.'));renderSeq([],-1);return}
-  var k=0;
-  function next(){
-    if(id!==run)return;
-    if(k>=items.length){renderSeq(items,-1);stage(card('Done','Press Show signs to replay.'));return}
-    var t=items[k];renderSeq(items,k);k++;
-    if(t.kind==='sign'&&t.url){
-      var v=document.createElement('video');v.src=t.url;v.autoplay=true;v.muted=true;v.playsInline=true;v.controls=true;
-      v.onended=next;v.onerror=next;stage(v);
-    }else if(t.kind==='sign'){
-      stage(card(t.label,'Approved phrase loaded, but no clip is attached yet.'));timer=setTimeout(next,1500);
-    }else{
-      stage(card(t.label,'This phrase is not in the approved NSL library yet. Please try one of the reviewed phrases from the list.'));
-      timer=setTimeout(next,2200);
-    }
-  }
-  next();
-}
-
-function renderLib(){
-  var u=$('lib');u.textContent='';
+function renderLibrary(){
+  var list=$('lib');list.replaceChildren();
   APPROVED.forEach(function(entry){
-    var li=document.createElement('li'),a=document.createElement('span'),b=document.createElement('span');
-    a.textContent=entry.english;
-    b.textContent=entry.video ? 'clip ready' : 'pending review';
-    li.appendChild(a);li.appendChild(b);u.appendChild(li);
+    var li=document.createElement('li'),button=document.createElement('button'),status=document.createElement('span');
+    button.type='button';button.className='phrase-button';button.textContent=entry.english;
+    button.addEventListener('click',function(){$('txt').value=entry.english;checkPhrase(entry.english)});
+    status.textContent='reviewed clip';li.append(button,status);list.append(li);
   });
+  $('empty-library').hidden=APPROVED.length>0;
 }
-
 function loadApprovedLibrary(){
-  fetch('clips/approved-library.json')
-    .then(function(r){return r.ok?r.json():{approved_phrases:[]};})
+  fetch('clips/approved-library.json').then(function(response){if(!response.ok)throw new Error('library unavailable');return response.json()})
     .then(function(data){
-      APPROVED = data.approved_phrases || [];
-      APPROVED.forEach(function(entry){
-        if(entry && entry.english){
-          LIB[normalize(entry.english)] = {
-            english: entry.english,
-            video: entry.video || null,
-            status: entry.status || 'approved'
-          };
-        }
-      });
-      renderLib();
-      $('msg').textContent='Approved phrase library loaded.';
+      APPROVED=(data.approved_phrases||[]).filter(function(entry){return entry&&entry.status==='approved'&&entry.video&&entry.english});
+      APPROVED.forEach(function(entry){LIB[normalize(entry.english)]=entry});
+      renderLibrary();
     })
-    .catch(function(){
-      $('msg').textContent='No approved library was found. Add clips/approved-library.json to continue.';
-    });
+    .catch(function(){APPROVED=[];renderLibrary();$('msg').textContent='Could not load the phrase library. You can still type a phrase, but matching is unavailable.'});
 }
-
-$('go').onclick=function(){
-  $('msg').textContent='';
-  play(tokenize($('txt').value));
-};
-
-var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-$('mic').onclick=function(){
-  if(!SR){$('msg').textContent='Voice input isn’t supported in this browser. Type instead.';return}
-  var r=new SR();r.lang='en-NG';r.interimResults=false;
-  r.onstart=function(){$('msg').textContent='Listening…'};
-  r.onresult=function(e){
-    $('txt').value=e.results[0][0].transcript;
-    $('msg').textContent='';
-    play(tokenize($('txt').value));
+function stopListening(){if(recognition&&listening){recognition.stop()}}
+function startListening(){
+  var SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SpeechRecognition){$('msg').textContent='Speech recognition is not available in this browser. Try a supported browser or type your phrase instead.';return}
+  if(listening){stopListening();return}
+  recognition=new SpeechRecognition();
+  recognition.lang=$('language').value;recognition.interimResults=true;recognition.continuous=false;recognition.maxAlternatives=1;
+  recognition.onstart=function(){listening=true;$('mic').textContent='■ Stop listening';$('interim').textContent='Listening…';$('msg').textContent='Speak clearly in English.'};
+  recognition.onresult=function(event){
+    var interimText='',finalText='';
+    for(var i=event.resultIndex;i<event.results.length;i++){
+      var part=event.results[i][0].transcript;
+      if(event.results[i].isFinal)finalText+=part;else interimText+=part;
+    }
+    if(finalText.trim()){$('txt').value=finalText.trim();$('interim').textContent='';$('msg').textContent='Transcript ready. Check or edit it, then choose “Check phrase”.';}
+    else if(interimText.trim()){$('interim').textContent='Hearing: '+interimText.trim()}
   };
-  r.onerror=function(e){
-    $('msg').textContent=(e.error==='not-allowed'||e.error==='service-not-allowed')?'Microphone access is blocked here. Allow it, or type instead.':'Couldn’t hear that. Try typing instead.';
+  recognition.onerror=function(event){
+    var messages={ 'not-allowed':'Microphone access is blocked. Allow microphone access or type instead.','service-not-allowed':'Speech recognition is blocked by this browser or device. Type instead.','no-speech':'No speech was detected. Try again or type instead.','audio-capture':'No microphone was found. Check your device or type instead.','network':'Speech recognition needs a network connection in this browser.','language-not-supported':'This speech language is not supported here. Try another English option or type instead.','aborted':'Listening was stopped.'};
+    $('msg').textContent=messages[event.error]||'Speech recognition had a problem ('+event.error+'). Try again or type instead.';
   };
-  try{r.start()}catch(x){$('msg').textContent='Couldn’t start the microphone. Type instead.'}
-};
-
+  recognition.onend=function(){listening=false;$('mic').textContent='🎙 Speak';$('interim').textContent=''};
+  try{recognition.start()}catch(error){listening=false;$('mic').textContent='🎙 Speak';$('msg').textContent='Could not start speech recognition. Type your phrase instead.'}
+}
+$('mic').addEventListener('click',startListening);
+$('go').addEventListener('click',function(){checkPhrase($('txt').value)});
 $('start').onclick=function(){$('home').hidden=true;$('app').hidden=false;window.scrollTo(0,0)};
-$('back').onclick=function(){run++;clearTimeout(timer);$('app').hidden=true;$('home').hidden=false};
+$('back').onclick=function(){stopListening();$('app').hidden=true;$('home').hidden=false};
 $('about').onclick=function(){$('aboutbox').hidden=!$('aboutbox').hidden};
 loadApprovedLibrary();
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){})}
 </script>
 </body>
 </html>
-
