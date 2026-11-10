@@ -51,25 +51,25 @@ li span:last-child{color:var(--mute)}
 <section id="home">
 <div class="logo" aria-hidden="true">KC</div>
 <h1 class="hh">KC Sign</h1>
-<p class="sub hs">Speak or type English and see it in Nigerian Sign Language.</p>
+<p class="sub hs">Speak or type English and play a reviewed Nigerian Sign Language phrase.</p>
 <div class="btns col">
 <button class="p" id="start" type="button">Start translating</button>
 <button id="about" type="button">How it works</button>
 </div>
 <div class="card" id="aboutbox" hidden>
-<p>1. Tap Speak, or type what you want to say.</p>
-<p>2. KC Sign finds each word in its sign library.</p>
-<p>3. Sign clips play one after another. Words without a clip are fingerspelled.</p>
-<p class="note">This is an early version. Signs must be recorded and checked by Deaf signers before real use.</p>
+<p>1. Tap Speak or type a short phrase.</p>
+<p>2. KC Sign checks the approved NSL phrase library.</p>
+<p>3. If the phrase is approved, the matching sign clip plays. Otherwise, the app shows that the phrase is not yet available.</p>
+<p class="note">This is an early version. Sign meanings must be reviewed by fluent NSL signers before they are treated as valid translations.</p>
 </div>
 </section>
 <div id="app" hidden>
 <button id="back" type="button">← Home</button>
 <h1 style="margin-top:12px">Translate</h1>
-<p class="sub">Say or type something in English.</p>
+<p class="sub">Try one of the approved phrases.</p>
 <div class="card">
 <label for="txt" class="note">What was said</label>
-<textarea id="txt" placeholder="Try: Good morning, how are you? Please help me."></textarea>
+<textarea id="txt" placeholder="Try: hello, please, i need help, where is the restroom?"></textarea>
 <div class="btns">
 <button class="p" id="go" type="button">Show signs</button>
 <button id="mic" type="button">Speak</button>
@@ -77,50 +77,55 @@ li span:last-child{color:var(--mute)}
 <div id="msg" role="status"></div>
 </div>
 
-<div class="card" id="stage" aria-live="polite"><span class="note">Signs will appear here.</span></div>
+<div class="card" id="stage" aria-live="polite"><span class="note">Approved signs will appear here.</span></div>
 <div id="seq"></div>
 
-<h2>Sign library</h2>
+<h2>Approved phrase library</h2>
 <div class="card">
 <ul id="lib"></ul>
-<h2>Add a clip</h2>
-<div class="add">
-<input type="text" id="aw" placeholder="Word or phrase, e.g. thank you" aria-label="Word or phrase">
-<input type="file" id="af" accept="video/*" aria-label="Video clip">
-<button class="p" id="ab" type="button">Attach clip</button>
-</div>
-<p class="note">Clips attached here are for testing and are lost when you close the page. To add clips permanently, put them in the clips folder and list them in clips/clips.json.</p>
 </div>
 </div>
 </main>
 <script>
-// Library: word or phrase -> video URL (null = no clip yet).
-var LIB={'hello':null,'good morning':null,'good afternoon':null,'good evening':null,'how are you':null,'thank you':null,'please':null,'sorry':null,'yes':null,'no':null,'help':null,'water':null,'food':null,'doctor':null,'school':null,'my name is':null,'i':null,'you':null,'love':null};
-var FILLER={um:1,uh:1,erm:1,uhh:1},run=0,timer=null;
+var LIB={},APPROVED=[],FILLER={um:1,uh:1,erm:1,uhh:1},run=0,timer=null;
 var $=function(i){return document.getElementById(i)};
 
+function normalize(text){
+  return text.toLowerCase().replace(/[^a-z0-9' ]+/g,' ').trim().replace(/\s+/g,' ');
+}
+
 function tokenize(text){
-  var w=text.toLowerCase().replace(/[^a-z' ]+/g,' ').split(/\s+/).filter(function(x){return x&&!FILLER[x]});
+  var raw=normalize(text);
+  if(!raw){return []}
+  var words=raw.split(' ').filter(function(x){return x&&!FILLER[x]});
   var out=[],i=0;
-  while(i<w.length){
+  while(i<words.length){
     var hit=null;
-    for(var n=Math.min(4,w.length-i);n>0;n--){
-      var p=w.slice(i,i+n).join(' ');
-      if(p in LIB){hit={label:p,url:LIB[p],n:n};break}
+    for(var n=Math.min(4,words.length-i);n>0;n--){
+      var phrase=words.slice(i,i+n).join(' ');
+      if(LIB[phrase]){hit={label:phrase,url:LIB[phrase].video||null,n:n,approved:true};break}
     }
-    if(hit){out.push({label:hit.label,url:hit.url,kind:'sign'});i+=hit.n}
-    else{out.push({label:w[i],kind:'spell'});i++}
+    if(hit){
+      out.push({label:hit.label,url:hit.url,kind:'sign'});
+      i+=hit.n;
+    }else{
+      out.push({label:words[i],kind:'unsupported'});
+      i++;
+    }
   }
   return out;
 }
+
 function renderSeq(items,cur){
   var s=$('seq');s.textContent='';
   items.forEach(function(t,k){
     var c=document.createElement('span');
-    c.className='chip'+(t.kind==='spell'?' s':'')+(k===cur?' on':'');
-    c.textContent=t.label;s.appendChild(c);
+    c.className='chip'+(t.kind==='unsupported'?' s':'')+(k===cur?' on':'');
+    c.textContent=t.label;
+    s.appendChild(c);
   });
 }
+
 function stage(el){var s=$('stage');s.textContent='';s.appendChild(el)}
 function card(big,note){
   var d=document.createElement('div');
@@ -128,6 +133,7 @@ function card(big,note){
   var n=document.createElement('div');n.className='note';n.textContent=note;
   d.appendChild(b);d.appendChild(n);return d;
 }
+
 function play(items){
   run++;var id=run;clearTimeout(timer);
   if(!items.length){stage(card('…','Nothing to show yet.'));renderSeq([],-1);return}
@@ -140,53 +146,74 @@ function play(items){
       var v=document.createElement('video');v.src=t.url;v.autoplay=true;v.muted=true;v.playsInline=true;v.controls=true;
       v.onended=next;v.onerror=next;stage(v);
     }else if(t.kind==='sign'){
-      stage(card(t.label,'No clip attached yet. A real signer video plays here.'));
-      timer=setTimeout(next,1500);
+      stage(card(t.label,'Approved phrase loaded, but no clip is attached yet.'));timer=setTimeout(next,1500);
     }else{
-      var letters=t.label.replace(/[^a-z]/g,'').split(''),j=0;
-      (function spell(){
-        if(id!==run)return;
-        if(j>=letters.length){next();return}
-        stage(card(letters[j].toUpperCase(),'Fingerspelling: '+t.label));j++;
-        timer=setTimeout(spell,700);
-      })();
+      stage(card(t.label,'This phrase is not in the approved NSL library yet. Please try one of the reviewed phrases from the list.'));
+      timer=setTimeout(next,2200);
     }
   }
   next();
 }
+
 function renderLib(){
   var u=$('lib');u.textContent='';
-  Object.keys(LIB).forEach(function(w){
+  APPROVED.forEach(function(entry){
     var li=document.createElement('li'),a=document.createElement('span'),b=document.createElement('span');
-    a.textContent=w;b.textContent=LIB[w]?'clip attached':'no clip yet';
+    a.textContent=entry.english;
+    b.textContent=entry.video ? 'clip ready' : 'pending review';
     li.appendChild(a);li.appendChild(b);u.appendChild(li);
   });
 }
-$('go').onclick=function(){$('msg').textContent='';play(tokenize($('txt').value))};
-$('ab').onclick=function(){
-  var w=$('aw').value.toLowerCase().replace(/[^a-z' ]+/g,' ').trim().replace(/\s+/g,' '),f=$('af').files[0];
-  if(!w||!f){$('msg').textContent='Enter a word and choose a video first.';return}
-  LIB[w]=URL.createObjectURL(f);renderLib();
-  $('msg').textContent='Attached a clip for “'+w+'”.';$('aw').value='';$('af').value='';
+
+function loadApprovedLibrary(){
+  fetch('clips/approved-library.json')
+    .then(function(r){return r.ok?r.json():{approved_phrases:[]};})
+    .then(function(data){
+      APPROVED = data.approved_phrases || [];
+      APPROVED.forEach(function(entry){
+        if(entry && entry.english){
+          LIB[normalize(entry.english)] = {
+            english: entry.english,
+            video: entry.video || null,
+            status: entry.status || 'approved'
+          };
+        }
+      });
+      renderLib();
+      $('msg').textContent='Approved phrase library loaded.';
+    })
+    .catch(function(){
+      $('msg').textContent='No approved library was found. Add clips/approved-library.json to continue.';
+    });
+}
+
+$('go').onclick=function(){
+  $('msg').textContent='';
+  play(tokenize($('txt').value));
 };
+
 var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 $('mic').onclick=function(){
   if(!SR){$('msg').textContent='Voice input isn’t supported in this browser. Type instead.';return}
   var r=new SR();r.lang='en-NG';r.interimResults=false;
   r.onstart=function(){$('msg').textContent='Listening…'};
-  r.onresult=function(e){$('txt').value=e.results[0][0].transcript;$('msg').textContent='';play(tokenize($('txt').value))};
-  r.onerror=function(e){$('msg').textContent=(e.error==='not-allowed'||e.error==='service-not-allowed')?'Microphone access is blocked here. Allow it, or type instead.':'Couldn’t hear that ('+e.error+'). Try again or type.'};
+  r.onresult=function(e){
+    $('txt').value=e.results[0][0].transcript;
+    $('msg').textContent='';
+    play(tokenize($('txt').value));
+  };
+  r.onerror=function(e){
+    $('msg').textContent=(e.error==='not-allowed'||e.error==='service-not-allowed')?'Microphone access is blocked here. Allow it, or type instead.':'Couldn’t hear that. Try typing instead.';
+  };
   try{r.start()}catch(x){$('msg').textContent='Couldn’t start the microphone. Type instead.'}
 };
-// Load clips listed in clips/clips.json, e.g. {"thank you":"thank_you.mp4"}
-fetch('clips/clips.json').then(function(r){return r.ok?r.json():{}}).then(function(m){
-  Object.keys(m).forEach(function(w){LIB[w.toLowerCase()]='clips/'+m[w]});renderLib();
-}).catch(function(){});
+
 $('start').onclick=function(){$('home').hidden=true;$('app').hidden=false;window.scrollTo(0,0)};
 $('back').onclick=function(){run++;clearTimeout(timer);$('app').hidden=true;$('home').hidden=false};
 $('about').onclick=function(){$('aboutbox').hidden=!$('aboutbox').hidden};
-renderLib();
+loadApprovedLibrary();
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){})}
 </script>
 </body>
 </html>
+
